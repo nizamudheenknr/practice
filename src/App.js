@@ -1,6 +1,7 @@
 
 import './App.css';
 import GeneratorFunction from './GeneratorFunction';
+import PromiseRace from './PromiseRace';
 import Testing from './Testing';
 import Todo from './Todo';
 
@@ -10,6 +11,7 @@ function App() {
       <Testing/>
       <GeneratorFunction/>
       <Todo/>
+      <PromiseRace/>
     
     </div>
   );

@@ -1,55 +1,67 @@
-
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const Form = () => {
-  const [add,setAdd]=useState([])
-  const [input,setInput]=useState('')
-  const [editid,setEditid]=useState(null)
-  const [edittext,setEdittext]=useState('')
+  const [add, setAdd] = useState([]);
+  const [input, setInput] = useState('');
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState('');
 
-  const setHandler=()=>{
-   
-    if(editid){
-      setAdd(add.map((x)=>(x.id===editid?{...x,task:edittext}:x)))
-      setEditid(null)
-      setEdittext('')
-    }else{
-
-    setAdd([...add,{id:Date.now(),task:input}])
-    setInput('')
+  const setHandler = () => {
+    if (editId) {
+      setAdd(add.map((x) => (x.id === editId ? { ...x, task: editText } : x)));
+      setEditId(null);
+      setEditText('');
+    } else {
+      setAdd([...add, { id: Date.now(), task: input }]);
+      setInput('');
     }
-  }
+  };
+
   console.log(add);
-  
-  const deleteHandler=(id)=>{
-    const deleted=add.filter((x)=>(x.id!==id))
-    setAdd(deleted)
-  }
-  
-    const editHandler=(id,task)=>{
-      setEditid(id)
-      setEdittext(task)
-    }
+
+  const deleteHandler = (id) => {
+    const deleted = add.filter((x) => x.id !== id);
+    setAdd(deleted);
+  };
+
+  const editHandler = (id, task) => {
+    setEditId(id);
+    setEditText(task);
+  };
+
   return (
-    <div>
-          <input value={editid?edittext:input} onChange={(e)=>editid?setEdittext(e.target.value):setInput(e.target.value)} type='text'/>
-          <button onClick={()=>setHandler()}>{editid?"save":"add"}</button>
-          {
-            add.map((item)=>(
-              <div>
-                <h1>
-                  {item.task}</h1>
-                  <button  onClick={()=>{deleteHandler(item.id)}}>delete</button>
-      
-                  <button onClick={()=>editHandler(item.id,item.task)}>edit</button>
-                
-              </div>
-            ))
-          }
+    <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto', border: '1px solid #ccc', borderRadius: '8px' }}>
+      <input
+        style={{ padding: '8px', width: 'calc(100% - 20px)', marginBottom: '10px' }}
+        value={editId ? editText : input}
+        onChange={(e) => (editId ? setEditText(e.target.value) : setInput(e.target.value))}
+        type='text'
+      />
+      <button
+        style={{ padding: '10px 20px', marginBottom: '10px', display: 'block', width: '100%', backgroundColor: '#007BFF', color: '#fff', border: 'none', borderRadius: '4px' }}
+        onClick={setHandler}
+      >
+        {editId ? 'Save' : 'Add'}
+      </button>
+      {add.map((item) => (
+        <div key={item.id} style={{ marginBottom: '10px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+          <h1 style={{ fontSize: '18px', margin: '0 0 10px' }}>{item.task}</h1>
+          <button
+            style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '4px' }}
+            onClick={() => deleteHandler(item.id)}
+          >
+            Delete
+          </button>
+          <button
+            style={{ padding: '5px 10px', backgroundColor: '#ffc107', color: '#fff', border: 'none', borderRadius: '4px' }}
+            onClick={() => editHandler(item.id, item.task)}
+          >
+            Edit
+          </button>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Form
-
-
+export default Form;
