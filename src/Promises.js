@@ -8,6 +8,8 @@ const promise1 = new Promise((resolve,reject)=>{
 
 const promise2 = new Promise((resolve,reject)=>{
     resolve(["React.js","Redux.js"])
+
+
 })
 
 promise1.then((res)=>{
