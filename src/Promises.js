@@ -19,6 +19,15 @@ promise1.then((res)=>{
 promise2.then((res)=>{
     console.log(res);
 })
+
+const number = [1,2,3,4,5]
+
+const doubleNumber = number.reduce((accumilator,currentValue)=>{
+  return accumilator + currentValue
+},0)
+
+console.log(doubleNumber);
+
   return (
     <div>
 
