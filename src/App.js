@@ -5,6 +5,7 @@ import Promises from './Promises';
 import PromiseRace from './PromiseRace';
 import Testing from './Testing';
 import Todo from './Todo';
+import ArrayMe from './ArrayMe';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Todo/>
       <PromiseRace/>
       <Promises/>
+      <ArrayMe/>
     
    
       
